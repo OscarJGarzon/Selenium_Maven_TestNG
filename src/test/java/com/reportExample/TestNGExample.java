@@ -1,21 +1,28 @@
 package com.reportExample;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import toolBox.ReadExcelFile;
+import toolBox.WriteExcelFile;
+import toolBox.toolBoxFunctions;
 
-
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.Duration;
 
 import static org.junit.Assert.assertTrue;
 
-public class testNGExample {
+public class TestNGExample {
+    private toolBoxFunctions TBF= new toolBoxFunctions();
+    private WriteExcelFile writeFile= new WriteExcelFile();
+    private ReadExcelFile readFile= new ReadExcelFile();
 
     private WebDriver chDriver;
     By InpSearchLocator = By.cssSelector("#s");
@@ -25,21 +32,21 @@ public class testNGExample {
     @BeforeClass
 
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromeDriver/chromedriver.exe");
-        chDriver = new ChromeDriver();
-        chDriver.manage().window().maximize();
-        chDriver.get("https://practice.automationtesting.in/");
+        chDriver = TBF.setUp(chDriver);
     }
 
     @Test
-    public void testSearchPage() {
+    public void testSearchPage() throws IOException {
         WebDriverWait timeSearch = new WebDriverWait(chDriver, Duration.ofSeconds(10));
+        String dataIN, dataOUT;
+        Path path = Paths.get("");
+        String filePath= path.toAbsolutePath().toString()+"\\src\\test\\resources\\DataEntry\\DataEntryTestCases.xlsx";
 
         WebElement InpSearch = chDriver.findElement(InpSearchLocator);
         InpSearch.clear();
-        InpSearch.sendKeys("Ruby");
+        dataIN=readFile.getCellValue(filePath, "DataTestCases",0,0);
+        InpSearch.sendKeys(dataIN);
         InpSearch.submit();
-
         timeSearch.until(ExpectedConditions.presenceOfElementLocated(DivResultLocator));
         assertTrue("The result is not present.", chDriver.findElement(DivResultLocator).isDisplayed());
     }
@@ -47,6 +54,7 @@ public class testNGExample {
     @AfterClass
 
     public void tearDown() {
-        chDriver.close();
+        chDriver.quit();
+
     }
 }

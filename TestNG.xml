@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Example Of Report">
+    <test name="ExampleBase">
+        <classes>
+            <class name="com.qualityexample.base.ExampleBase"/>
+        </classes>
+    </test> <!-- Test -->
     <test name="Example">
         <classes>
-            <class name="com.reportExample.testNGExample"/>
+            <class name="com.reportExample.TestNGExample"/>
         </classes>
     </test> <!-- Test -->
     <test name="ExampleNavigate">
         <classes>
-            <class name="com.reportExample.testNGExampleNavigate"/>
+            <class name="com.reportExample.TestNGExampleNavigate"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->
