@@ -15,7 +15,7 @@ import java.time.Duration;
 
 import static org.junit.Assert.assertTrue;
 
-public class TestNGExample {
+public class testNGExample {
 
     private WebDriver chDriver;
     By InpSearchLocator = By.cssSelector("#s");

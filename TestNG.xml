@@ -3,12 +3,12 @@
 <suite name="Example Of Report">
     <test name="Example">
         <classes>
-            <class name="com.reportExample.TestNGExample"/>
+            <class name="com.reportExample.testNGExample"/>
         </classes>
     </test> <!-- Test -->
     <test name="ExampleNavigate">
         <classes>
-            <class name="com.reportExample.TestNGExampleNavigate"/>
+            <class name="com.reportExample.testNGExampleNavigate"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

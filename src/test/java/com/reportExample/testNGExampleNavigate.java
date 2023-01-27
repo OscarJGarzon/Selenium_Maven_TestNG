@@ -17,7 +17,7 @@ import java.time.Duration;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class TestNGExampleNavigate {
+public class testNGExampleNavigate {
 
     private WebDriver chDriver;
     By ImgLinkHTMLLocator = By.xpath("//span[@class='onsale' ] /../img[@class='attachment-shop_catalog size-shop_catalog wp-post-image']");
