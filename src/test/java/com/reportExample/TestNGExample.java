@@ -33,7 +33,7 @@ public class TestNGExample {
     }
 
 
-    @BeforeTest
+    @BeforeMethod
     public void setUp() {
         chDriver = TBF.setUp(chDriver);
     }
@@ -56,7 +56,7 @@ public class TestNGExample {
         assertTrue("The result is not present.", chDriver.findElement(DivResultLocator).isDisplayed());
     }
 
-    @AfterTest
+    @AfterMethod
 
     public void tearDown() {
         chDriver.quit();
