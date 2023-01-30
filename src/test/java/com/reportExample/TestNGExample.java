@@ -5,56 +5,60 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
-import toolBox.ReadExcelFile;
-import toolBox.WriteExcelFile;
+import org.testng.annotations.*;
+import toolBox.FunctionDataEntry;
 import toolBox.toolBoxFunctions;
 
-import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.time.Duration;
+import java.util.HashMap;
 
 import static org.junit.Assert.assertTrue;
 
 public class TestNGExample {
-    private toolBoxFunctions TBF= new toolBoxFunctions();
-    private WriteExcelFile writeFile= new WriteExcelFile();
-    private ReadExcelFile readFile= new ReadExcelFile();
+    private toolBoxFunctions TBF = new toolBoxFunctions();
+    FunctionDataEntry dataEntry = new FunctionDataEntry("DataEntryTestCases.xlsx", "DataTestCases");
 
     private WebDriver chDriver;
     By InpSearchLocator = By.cssSelector("#s");
     By DivResultLocator = By.id("content");
 
+    @DataProvider(name = "testDataSupplier")
+    public Object[][] testDataSupplier() {
+        Object[][] obj = new Object[dataEntry.getRowCount()][1];
+        for (int i = 1; i <= dataEntry.getRowCount(); i++) {
+            HashMap<String, HashMap<String, String>> testData = dataEntry.getTestDataInMap(i);
+            obj[i - 1][0] = testData;
+        }
+        return obj;
+    }
 
-    @BeforeClass
 
+    @BeforeTest
     public void setUp() {
         chDriver = TBF.setUp(chDriver);
     }
 
-    @Test
-    public void testSearchPage() throws IOException {
-        WebDriverWait timeSearch = new WebDriverWait(chDriver, Duration.ofSeconds(10));
-        String dataIN, dataOUT;
-        Path path = Paths.get("");
-        String filePath= path.toAbsolutePath().toString()+"\\src\\test\\resources\\DataEntry\\DataEntryTestCases.xlsx";
+    @Test(dataProvider = "testDataSupplier")
+    public void testSearchPage(Object obj1)  {
+        HashMap<String, HashMap<String, String>> masterData = (HashMap<String, HashMap<String, String>>) obj1;
+        HashMap<String, String> testCaseData = masterData.get("TEST_ID");
+        System.out.println("Test Data Master" + masterData.get("TEST_ID"));
+        System.out.println("Test Data " + testCaseData.get("Words"));
+        System.out.println("Test Data 2 " + testCaseData.get("Country"));
 
+        WebDriverWait timeSearch = new WebDriverWait(chDriver, Duration.ofSeconds(10));
         WebElement InpSearch = chDriver.findElement(InpSearchLocator);
         InpSearch.clear();
-        dataIN=readFile.getCellValue(filePath, "DataTestCases",0,0);
-        InpSearch.sendKeys(dataIN);
+
+        InpSearch.sendKeys(testCaseData.get("Words"));
         InpSearch.submit();
         timeSearch.until(ExpectedConditions.presenceOfElementLocated(DivResultLocator));
         assertTrue("The result is not present.", chDriver.findElement(DivResultLocator).isDisplayed());
     }
 
-    @AfterClass
+    @AfterTest
 
     public void tearDown() {
         chDriver.quit();
-
     }
 }
