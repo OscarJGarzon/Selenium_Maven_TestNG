@@ -13,10 +13,10 @@ public class FunctionDataEntry {
     Sheet sh;
 
     public FunctionDataEntry(String fileName, String sheetName) {
-        System.out.println("Load Excel Sheet.........");
+        System.out.println("Load Excel File " + fileName + " Sheet " + sheetName);
         Path path = Paths.get("");
-        filePath = path.toAbsolutePath().toString() + "\\src\\test\\resources\\DataEntry\\" + fileName;
-       // Open File
+        filePath = path.toAbsolutePath() + "\\src\\test\\resources\\DataEntry\\" + fileName;
+        // Open File
         File testDataFile = new File(filePath);
         Workbook wb = null;
         try {
@@ -27,17 +27,15 @@ public class FunctionDataEntry {
         sh = wb.getSheet(sheetName);
     }
 
-    public HashMap<String, HashMap<String,String>> getTestDataInMap(int rowNum) {
+    public HashMap<String, HashMap<String, String>> getTestDataInMap(int rowNum) {
         //Read data row by row and put in map
-        HashMap<String, HashMap<String,String>> MasterData = new HashMap<String, HashMap<String,String>>();
-        HashMap<String,String> testCaseData = new HashMap<String,String> ();
+        HashMap<String, HashMap<String, String>> MasterData = new HashMap<>();
+        HashMap<String, String> testCaseData = new HashMap<>();
 
-            for(int j = 0; j < getColCount(); j++){
-                sh.getRow(j).getCell(j).getStringCellValue();
-                testCaseData.put(sh.getRow(0).getCell(j).toString(), sh.getRow(rowNum).getCell(j).toString());
-            }
-            MasterData.put(sh.getRow(0).getCell(0).toString(), testCaseData);
-       // }
+        for (int j = 0; j < getColCount(); j++) {
+            testCaseData.put(sh.getRow(0).getCell(j).toString(), sh.getRow(rowNum).getCell(j).toString());
+        }
+        MasterData.put(sh.getRow(0).getCell(0).toString(), testCaseData);
         return MasterData;
     }
 
@@ -48,4 +46,5 @@ public class FunctionDataEntry {
     public int getColCount() {
         return sh.getRow(0).getLastCellNum();
     }
+
 }

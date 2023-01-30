@@ -39,12 +39,9 @@ public class TestNGExample {
     }
 
     @Test(dataProvider = "testDataSupplier")
-    public void testSearchPage(Object obj1)  {
+    public void testSearchPage(Object obj1) {
         HashMap<String, HashMap<String, String>> masterData = (HashMap<String, HashMap<String, String>>) obj1;
         HashMap<String, String> testCaseData = masterData.get("TEST_ID");
-        System.out.println("Test Data Master" + masterData.get("TEST_ID"));
-        System.out.println("Test Data " + testCaseData.get("Words"));
-        System.out.println("Test Data 2 " + testCaseData.get("Country"));
 
         WebDriverWait timeSearch = new WebDriverWait(chDriver, Duration.ofSeconds(10));
         WebElement InpSearch = chDriver.findElement(InpSearchLocator);
