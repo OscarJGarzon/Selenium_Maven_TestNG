@@ -1,7 +1,6 @@
 # Selenium TestNG Maven Project
 
-A sample framework Selenium, Maven, TestNG using Java this project contains some test class for testing a simple
-navigate and data validation that we can see in the page.
+An example of a framework that uses Selenium, Maven, TestNG using Java, uses a data entry from an excel file, allowing the execution of test cases individually for each record.
 
 ## Construido con 🛠️
 
@@ -16,10 +15,17 @@ navigate and data validation that we can see in the page.
 
 ## Starting 🚀
 
-_Estas instrucciones te permitirán obtener una copia del proyecto en funcionamiento en tu máquina local para propósitos
-de desarrollo y pruebas._
+Before beginning, the following routes should be taken into account:
 
-Mira **Deployment** para conocer como desplegar el proyecto.
+```
+src/test/resources/DataEntry
+```
+_This route must be used for the data files that we are going to use in the different test cases, it supports **.xls** and **.xslx** extensions_
+```
+src/test/java/toolBox
+```
+_This route contains the classes that support the different operations to execute the tests._
+
 
 ### Pre-requisitos 📋
 
