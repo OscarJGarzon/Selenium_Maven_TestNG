@@ -1,13 +1,11 @@
-package com.reportExample;
+package com.practice.automationtesting.in;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.ITestContext;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -18,7 +16,7 @@ import java.time.Duration;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class TestNGExampleNavigate {
+public class TestVerifyValues {
 
     toolBoxFunctions TBF = new toolBoxFunctions();
     private WebDriver chDriver;
@@ -33,15 +31,13 @@ public class TestNGExampleNavigate {
     @BeforeClass
 
     public void setUp() {
-        chDriver = TBF.setUp(chDriver);
+        chDriver = TBF.setUp("CHROME", "https://practice.automationtesting.in/",true);
     }
 
     @Test
-    public void testNavigate(ITestContext testContext) {
-        int Normalvalue = 0;
-        int Offerlvalue = 0;
-        Actions driveAction = new Actions(chDriver);
-        ;
+    public void testNavigate() {
+        int Normalvalue;
+        int Offerlvalue;
         WebDriverWait timeSearch = new WebDriverWait(chDriver, Duration.ofSeconds(10));
 
         WebElement ImgLinkHTML = chDriver.findElement(ImgLinkHTMLLocator);

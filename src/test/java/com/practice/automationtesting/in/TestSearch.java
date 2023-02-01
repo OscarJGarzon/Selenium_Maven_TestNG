@@ -1,4 +1,4 @@
-package com.reportExample;
+package com.practice.automationtesting.in;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 
 import static org.junit.Assert.assertTrue;
 
-public class TestNGExample {
+public class TestSearch {
     private toolBoxFunctions TBF = new toolBoxFunctions();
     FunctionDataEntry dataEntry = new FunctionDataEntry("DataEntryTestCases.xlsx", "DataTestCases");
 
@@ -35,7 +35,7 @@ public class TestNGExample {
 
     @BeforeMethod
     public void setUp() {
-        chDriver = TBF.setUp(chDriver);
+        chDriver = TBF.setUp("CHROME", "https://practice.automationtesting.in/",true);
     }
 
     @Test(dataProvider = "testDataSupplier")

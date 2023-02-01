@@ -1,4 +1,4 @@
-package com.qualityexample.base;
+package com.google;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -7,9 +7,6 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import toolBox.toolBoxFunctions;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
@@ -21,7 +18,7 @@ public class ExampleBase {
     @BeforeClass
 
     public void setUp() {
-        chDriver = TBF.setUp(chDriver);
+        chDriver = TBF.setUp("CHROME", "https://www.google.com/",true);
     }
 
     @Test
