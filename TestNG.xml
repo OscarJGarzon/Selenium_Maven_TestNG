@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Example Of Report">
-    <test name="Example">
+<suite name="Repots of Automationexercise">
+    <test name="Test case 1">
         <classes>
-            <class name="com.reportExample.TestNGExample"/>
-        </classes>
-    </test> <!-- Test -->
-    <test name="ExampleNavigate">
-        <classes>
-            <class name="com.reportExample.TestNGExampleNavigate"/>
+            <class name="com.automationexercise.com.RegisterUser"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->

@@ -1,28 +1,24 @@
-package com.qualityexample.base;
+package com.google;
 
-
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+import toolBox.toolBoxFunctions;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
 
-public class exampleBase {
+public class ExampleBase {
+    toolBoxFunctions TBF = new toolBoxFunctions();
     private WebDriver chDriver;
 
-    @Before
+    @BeforeClass
 
     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "./src/test/resources/chromeDriver/chromedriver.exe");
-        chDriver = new ChromeDriver();
-        chDriver.manage().window().maximize();
-        chDriver.get("https://www.google.com");
+        chDriver = TBF.setUp("CHROME", "https://www.google.com/",true);
     }
 
     @Test
@@ -33,13 +29,13 @@ public class exampleBase {
         searchField.submit();
 
         chDriver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        assertEquals("Colombia - Buscar con Google",chDriver.getTitle());
+        assertEquals("Colombia - Buscar con Google", chDriver.getTitle());
 
     }
 
-    @After
+    @AfterClass
 
-    public void tearDown(){
+    public void tearDown() {
         chDriver.quit();
     }
 }
