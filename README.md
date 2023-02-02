@@ -29,7 +29,7 @@ _This route contains the classes that support the different operations to execut
 
 ## Authors ✒️
 
-* **Oscar Jacinto Garzon** - *DevOps and QA Engineer* - [OscarJgarzon](https://github.com/OscarJGarzon)
+* **Oscar Jacinto Garzon** - *DevOps and QA Engineer* - [OscarJGarzon](https://github.com/OscarJGarzon)
 * oscarjgarzonsystem@gmail.com
 * Bogota - Colombia
 
